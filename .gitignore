@@ -70,3 +70,5 @@ yarn-error.log
 
 # Local Netlify folder
 .netlify
+
+packages/gatsby-theme-recipe-organizer/static/admin/config.yml
