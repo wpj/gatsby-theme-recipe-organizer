@@ -20,5 +20,5 @@
     "strictNullChecks": true,
     "target": "esnext"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["packages/*/src/**/*.ts", "packages/*/src/**/*.tsx"]
 }
