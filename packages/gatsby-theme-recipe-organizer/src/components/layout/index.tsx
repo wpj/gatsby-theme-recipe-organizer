@@ -20,7 +20,9 @@ const Layout: FC<{
         <header>
           <Nav showSearch={showSearch} siteTitle={siteTitle} />
         </header>
-        <main className={cc(mapTw(['max-w-xl', 'mx-auto', 'px-4', 'sm:px-1']))}>
+        <main
+          className={cc(mapTw(['container', 'mx-auto', 'px-4', 'sm:px-1']))}
+        >
           {children}
         </main>
       </div>
