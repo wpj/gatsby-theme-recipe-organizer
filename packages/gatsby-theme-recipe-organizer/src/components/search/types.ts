@@ -4,6 +4,9 @@ export interface SearchDocument {
   title?: string;
 }
 
+type FieldIndex = string | string[];
+
 export interface SearchIndex {
   documents: SearchDocument[];
+  indexFields: FieldIndex[];
 }

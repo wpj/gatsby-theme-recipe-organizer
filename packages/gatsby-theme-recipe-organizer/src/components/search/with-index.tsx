@@ -8,6 +8,8 @@ interface Props {
   setSearchIndex: (searchIndex: any) => void;
 }
 
+const INDEX_FIELDS = ['source', 'tags', 'title'];
+
 export default function WithIndex({ setSearchIndex }: Props) {
   const queryResult = useStaticQuery<Query>(graphql`
     query SearchIndexQuery {
@@ -17,6 +19,7 @@ export default function WithIndex({ setSearchIndex }: Props) {
             slug
           }
           frontmatter {
+            source
             tags
             title
           }
@@ -28,13 +31,14 @@ export default function WithIndex({ setSearchIndex }: Props) {
   let searchIndex = useMemo(() => {
     let documents = queryResult.allMarkdownRemark.nodes.map((node) => {
       return {
-        title: node?.frontmatter?.title,
-        tags: node?.frontmatter?.tags,
+        source: node?.frontmatter?.source,
         slug: node?.fields?.slug,
+        tags: node?.frontmatter?.tags,
+        title: node?.frontmatter?.title,
       };
     });
 
-    return { documents };
+    return { documents, indexFields: INDEX_FIELDS };
   }, [queryResult]);
 
   useEffect(() => {
