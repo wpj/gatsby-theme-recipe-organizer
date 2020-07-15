@@ -23,7 +23,7 @@ collections:
     public_folder: ''
     path: '{{title}}/index'
     editor:
-      preview: false
+      preview: true
     fields:
       - label: 'Title'
         name: 'title'

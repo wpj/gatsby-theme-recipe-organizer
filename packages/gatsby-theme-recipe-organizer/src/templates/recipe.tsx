@@ -1,33 +1,59 @@
-import React from 'react';
+import cc from 'classcat';
+import React, { FC } from 'react';
 import { graphql, PageProps } from 'gatsby';
 
 import Layout from '../components/layout';
 import { Query } from '../graphql/types';
 
-import styles from '../styles/markdown.module.css';
+import { map as mapTw } from '../styles/tw';
 
-interface Props extends PageProps {
+interface RecipeProps {
+  content: string;
+  title: string;
+}
+
+export const Recipe: FC<RecipeProps> = ({ content, title }) => {
+  return (
+    <article>
+      <header>
+        <div className={cc(mapTw(['sm:my-6', 'my-4']))}>
+          <h1
+            className={cc(
+              mapTw([
+                'sm:text-4xl',
+                'font-semibold',
+                'text-2xl',
+                'text-center',
+              ]),
+            )}
+          >
+            {title}
+          </h1>
+        </div>
+      </header>
+      <section
+        className={cc(mapTw(['prose', 'prose-sm', 'md:prose-lg', 'mx-auto']))}
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
+    </article>
+  );
+};
+
+interface RecipeTemplateProps extends PageProps {
   data: Query;
 }
 
-const RecipeTemplate = ({ data }: Props) => {
+const RecipeTemplate = ({ data }: RecipeTemplateProps) => {
   const recipe = data.markdownRemark!;
   const frontmatter = recipe.frontmatter!;
+  const title = frontmatter.title!;
   const siteTitle = data.site!.siteMetadata!.title!;
 
-  const pageTitle = `${siteTitle} | Recipe - ${frontmatter.title}`;
+  const pageTitle = `${siteTitle} | Recipe - ${title}`;
 
   return (
     <Layout pageTitle={pageTitle} siteTitle={siteTitle}>
-      <article>
-        <header>
-          <h1 className={styles.h1}>{frontmatter.title}</h1>
-        </header>
-        <section
-          className={styles.markdown}
-          dangerouslySetInnerHTML={{ __html: recipe.html! }}
-        />
-      </article>
+      <Recipe title={title} content={recipe.html!} />
     </Layout>
   );
 };

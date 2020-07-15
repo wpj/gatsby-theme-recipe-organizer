@@ -15,6 +15,7 @@ module.exports = ({ contentPath = 'recipes', icon = `assets/icon.png` }) => {
       title: `Recipe browser`,
     },
     plugins: [
+      `gatsby-plugin-typescript`,
       {
         resolve: `gatsby-source-filesystem`,
         options: {
@@ -83,7 +84,12 @@ module.exports = ({ contentPath = 'recipes', icon = `assets/icon.png` }) => {
         },
       },
 
-      `gatsby-plugin-netlify-cms`,
+      {
+        resolve: `gatsby-plugin-netlify-cms`,
+        options: {
+          modulePath: `${__dirname}/src/cms/cms.ts`,
+        },
+      },
     ],
   };
 };

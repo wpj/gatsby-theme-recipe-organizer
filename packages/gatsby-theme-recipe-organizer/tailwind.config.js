@@ -6,5 +6,5 @@ module.exports = {
   variants: {
     borderStyle: ['responsive', 'last'],
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
