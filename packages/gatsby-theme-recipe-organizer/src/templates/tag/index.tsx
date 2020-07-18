@@ -1,11 +1,10 @@
 import React from 'react';
 import { graphql, PageProps } from 'gatsby';
 
-import Layout from '../components/layout';
-import { Query } from '../graphql/types';
-import LinkList from '../components/link-list';
-
-import markdownStyles from '../styles/markdown.module.css';
+import Layout from '../../components/layout';
+import { Query } from '../../graphql/types';
+import LinkList from '../../components/link-list';
+import { Box, Heading } from '../../ds';
 
 interface Props extends PageProps {
   data: Query;
@@ -26,7 +25,11 @@ const TagTemplate = ({ data, pageContext }: Props) => {
 
   return (
     <Layout pageTitle={pageTitle} siteTitle={siteTitle}>
-      <h1 className={markdownStyles.h1}>Tag: {tag}</h1>
+      <Box px={['medium', 'large']} my={['medium', 'large']}>
+        <Heading align="center" level="1">
+          Tag: {tag}
+        </Heading>
+      </Box>
       <LinkList items={items} />
     </Layout>
   );

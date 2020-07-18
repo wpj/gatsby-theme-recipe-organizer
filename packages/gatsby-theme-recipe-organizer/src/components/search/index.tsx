@@ -1,14 +1,18 @@
 import React, { lazy, useMemo, useState } from 'react';
 
 import SearchForm from './form';
-import { SearchIndex } from './types';
+import { FormPreset, SearchIndex } from './types';
 import { Index } from './search-index';
 
 const WithIndex = lazy(() => import('./with-index'));
 
 const NullPlaceholder = () => null;
 
-export default function Search() {
+interface Props {
+  preset?: FormPreset;
+}
+
+export default function Search({ preset }: Props) {
   let [isActivated, setIsActivated] = useState(false);
   let [searchIndexConfig, setSearchIndexConfig] = useState<SearchIndex | null>(
     null,
@@ -35,7 +39,7 @@ export default function Search() {
           <WithIndex setSearchIndex={setSearchIndexConfig} />
         </React.Suspense>
       )}
-      <SearchForm searchIndex={searchIndex} init={init} />
+      <SearchForm searchIndex={searchIndex} init={init} preset={preset} />
     </>
   );
 }

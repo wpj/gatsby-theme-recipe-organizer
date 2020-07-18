@@ -1,38 +1,33 @@
 import cc from 'classcat';
 import React, { FC } from 'react';
 import { graphql, PageProps } from 'gatsby';
+import { useStyles } from 'react-treat';
 
-import Layout from '../components/layout';
-import { Query } from '../graphql/types';
-
-import { map as mapTw } from '../styles/tw';
+import * as styleRefs from './recipe.treat';
+import Layout from '../../components/layout';
+import { Query } from '../../graphql/types';
 
 interface RecipeProps {
   content: string;
   title: string;
 }
 
+import { Box, Heading } from '../../ds';
+
 export const Recipe: FC<RecipeProps> = ({ content, title }) => {
+  let styles = useStyles(styleRefs);
+
   return (
     <article>
       <header>
-        <div className={cc(mapTw(['sm:my-6', 'my-4']))}>
-          <h1
-            className={cc(
-              mapTw([
-                'sm:text-4xl',
-                'font-semibold',
-                'text-2xl',
-                'text-center',
-              ]),
-            )}
-          >
+        <Box px={['medium', 'large']} my={['medium', 'large']}>
+          <Heading align="center" level="1">
             {title}
-          </h1>
-        </div>
+          </Heading>
+        </Box>
       </header>
       <section
-        className={cc(mapTw(['prose', 'prose-sm', 'md:prose-lg', 'mx-auto']))}
+        className={cc([styles.article])}
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </article>

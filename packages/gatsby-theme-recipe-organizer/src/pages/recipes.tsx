@@ -4,8 +4,7 @@ import { graphql, PageProps } from 'gatsby';
 import Layout from '../components/layout';
 import { Query } from '../graphql/types';
 import LinkList from '../components/link-list';
-
-import markdownStyles from '../styles/markdown.module.css';
+import { Box, Heading } from '../ds';
 
 interface Props extends PageProps {
   data: Query;
@@ -23,7 +22,9 @@ const RecipeIndex = ({ data }: Props) => {
 
   return (
     <Layout siteTitle={siteTitle} pageTitle={pageTitle}>
-      <h1 className={markdownStyles.h1}>All recipes</h1>
+      <Box py={['medium', 'large']}>
+        <Heading level="1">All recipes</Heading>
+      </Box>
       <LinkList items={items} />
     </Layout>
   );

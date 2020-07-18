@@ -4,8 +4,7 @@ import { graphql, PageProps } from 'gatsby';
 import Layout from '../components/layout';
 import { Query } from '../graphql/types';
 import Search from '../components/search';
-
-import markdownStyles from '../styles/markdown.module.css';
+import { Box, Heading } from '../ds';
 
 interface Props extends PageProps {
   data: Query;
@@ -16,8 +15,10 @@ const IndexPage = ({ data }: Props) => {
 
   return (
     <Layout showSearch={false} siteTitle={siteTitle} pageTitle={siteTitle}>
-      <h1 className={markdownStyles.h3}>Recipe Search</h1>
-      <Search />
+      <Box py={['medium', 'large']}>
+        <Heading level="1">Recipe Search</Heading>
+      </Box>
+      <Search preset="standalone" />
     </Layout>
   );
 };

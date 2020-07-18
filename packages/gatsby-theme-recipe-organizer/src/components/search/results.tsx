@@ -1,8 +1,7 @@
-import cc from 'classcat';
 import React from 'react';
-import { Link } from 'gatsby';
 
-import { map as mapTw } from '../../styles/tw';
+import { Box, Text, Stack } from '../../ds';
+import { Link } from '../link';
 
 import { SearchDocument } from './types';
 
@@ -13,15 +12,17 @@ interface Props {
 function Result({ slug, title, tags }: SearchDocument) {
   return (
     <div>
-      <Link to={slug}>{title}</Link>
+      <Link to={slug}>
+        <Text>{title}</Text>
+      </Link>
       {tags ? (
-        <ul>
+        <Stack as="ul">
           {tags.map((tag) => (
             <li key={tag}>
-              <span>{tag}</span>
+              <Text>{tag}</Text>
             </li>
           ))}
-        </ul>
+        </Stack>
       ) : null}
     </div>
   );
@@ -29,25 +30,16 @@ function Result({ slug, title, tags }: SearchDocument) {
 
 export default function Results({ items }: Props) {
   return (
-    <div>
-      <ul className={cc(mapTw(['list-none', 'px-1']))}>
+    <Box px="small">
+      <Stack as="ul" divide="xxsmall" divideColor="gray">
         {items.map((item) => (
-          <li
-            className={cc(
-              mapTw([
-                'border-b',
-                'border-gray-400',
-                'pt-3',
-                'pb-3',
-                'last:border-none',
-              ]),
-            )}
-            key={item.slug}
-          >
-            <Result title={item.title} slug={item.slug} />
+          <li key={item.slug}>
+            <Box py="medium">
+              <Result title={item.title} slug={item.slug} />
+            </Box>
           </li>
         ))}
-      </ul>
-    </div>
+      </Stack>
+    </Box>
   );
 }

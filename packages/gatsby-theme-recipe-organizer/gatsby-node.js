@@ -23,7 +23,7 @@ collections:
     public_folder: ''
     path: '{{title}}/index'
     editor:
-      preview: true
+      preview: false
     fields:
       - label: 'Title'
         name: 'title'
@@ -82,8 +82,8 @@ exports.onPreBootstrap = (
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const recipeTemplate = require.resolve(`./src/templates/recipe.tsx`);
-  const tagTemplate = require.resolve(`./src/templates/tag.tsx`);
+  const recipeTemplate = require.resolve(`./src/templates/recipe/index.tsx`);
+  const tagTemplate = require.resolve(`./src/templates/tag/index.tsx`);
 
   const result = await graphql(
     `

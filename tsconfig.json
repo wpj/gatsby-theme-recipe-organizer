@@ -10,6 +10,7 @@
     "lib": ["dom", "es2019"],
     "module": "esnext",
     "moduleResolution": "node",
+    "noErrorTruncation": true,
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,

@@ -5,8 +5,7 @@ import { paramCase } from 'change-case';
 import { Query } from '../graphql/types';
 import Layout from '../components/layout';
 import LinkList from '../components/link-list';
-
-import markdownStyles from '../styles/markdown.module.css';
+import { Box, Heading } from '../ds';
 
 const TagsPage: FC<{ data: Query }> = ({ data }) => {
   const group = data!.allMarkdownRemark!.group;
@@ -24,7 +23,9 @@ const TagsPage: FC<{ data: Query }> = ({ data }) => {
 
   return (
     <Layout pageTitle={pageTitle} siteTitle={siteTitle}>
-      <h1 className={markdownStyles.h1}>Tags</h1>
+      <Box py={['medium', 'large']}>
+        <Heading level="1">Tags</Heading>
+      </Box>
       <LinkList items={links} />
     </Layout>
   );

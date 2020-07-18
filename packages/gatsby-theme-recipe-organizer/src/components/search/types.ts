@@ -10,3 +10,5 @@ export interface SearchIndex {
   documents: SearchDocument[];
   indexFields: FieldIndex[];
 }
+
+export type FormPreset = 'inline' | 'standalone';

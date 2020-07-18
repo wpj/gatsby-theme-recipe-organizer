@@ -1,36 +1,9 @@
-import cc from 'classcat';
-import React, { FC, ButtonHTMLAttributes } from 'react';
+import React, { FC } from 'react';
 import { graphql } from 'gatsby';
 
 import { Query } from '../graphql/types';
 import Layout from '../components/layout';
-import { map as mapTw } from '../styles/tw';
-
-import markdownStyles from '../styles/markdown.module.css';
-
-const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
-  className,
-  ...props
-}) => {
-  return (
-    <button
-      className={cc([
-        className,
-        mapTw([
-          'bg-blue-500',
-          'hover:bg-blue-700',
-          'text-white',
-          'font-bold',
-          'py-2',
-          'px-4',
-          'rounded',
-          'whitespace-no-wrap',
-        ]),
-      ])}
-      {...props}
-    />
-  );
-};
+import { Box, Button, Heading, Stack, Text } from '../ds';
 
 async function clearCacheStorage() {
   if (!('caches' in window)) {
@@ -67,34 +40,20 @@ async function forceRefresh() {
   window.location.reload();
 }
 
-const CardHeading: FC = ({ children }) => {
+const Card: FC<{ title: string }> = ({ title, children }) => {
   return (
-    <h3
-      className={cc(
-        mapTw(['text-xl', 'leading-snug', 'font-semibold', 'mb-2']),
-      )}
+    <Box
+      px={['medium', 'large']}
+      py={['medium', 'large']}
+      backgroundColor="lightgray"
+      borderRadius="large"
     >
-      {children}
-    </h3>
-  );
-};
+      <Box mb="medium">
+        <Heading level="3">{title}</Heading>
+      </Box>
 
-const Card: FC = ({ children }) => {
-  return (
-    <div
-      className={cc(
-        mapTw([
-          'rounded-lg',
-          'bg-gray-100',
-          'py-2',
-          'px-3',
-          'sm:py-4',
-          'sm:px-6',
-        ]),
-      )}
-    >
       {children}
-    </div>
+    </Box>
   );
 };
 
@@ -104,36 +63,22 @@ function ForceRefresh() {
   }
 
   return (
-    <Card>
-      <div
-        className={cc(
-          mapTw([
-            'sm:flex',
-            'justify-between',
-            'items-center',
-            'sm:space-x-2',
-            'space-y-4',
-            'sm:space-y-0',
-          ]),
-        )}
+    <Card title="Force Refresh">
+      <Box
+        display={['block', 'flex']}
+        justifyContent="spaceBetween"
+        alignItems="center"
       >
-        <div>
-          <CardHeading>Force refresh</CardHeading>
-
-          <p>
+        <Box>
+          <Text as="p">
             Clears out offline storage and reloads a fresh copy of the site.
-          </p>
-        </div>
+          </Text>
+        </Box>
 
-        <div>
-          <Button
-            className={cc(mapTw(['sm:w-auto', 'w-full']))}
-            onClick={onClick}
-          >
-            Force refresh
-          </Button>
-        </div>
-      </div>{' '}
+        <Box>
+          <Button onClick={onClick}>Force refresh</Button>
+        </Box>
+      </Box>
     </Card>
   );
 }
@@ -146,16 +91,10 @@ function SiteInfo({
   themeVersion: string;
 }) {
   return (
-    <Card>
-      <CardHeading>Site Info</CardHeading>
+    <Card title="Site Info">
+      <Text as="p">Commit: {commit}</Text>
 
-      <p>
-        <span>Commit:</span> <span>{commit}</span>
-      </p>
-
-      <p>
-        <span>Theme version:</span> <span>{themeVersion}</span>
-      </p>
+      <Text as="p">Theme version: {themeVersion}</Text>
     </Card>
   );
 }
@@ -171,11 +110,13 @@ const SettingsPage: FC<{ data: Query }> = ({ data }) => {
 
   return (
     <Layout pageTitle={pageTitle} siteTitle={siteTitle}>
-      <h1 className={markdownStyles.h1}>Settings</h1>
-      <div className={cc(mapTw(['space-y-4']))}>
+      <Box my={['medium', 'large']}>
+        <Heading level="1">Settings</Heading>
+      </Box>
+      <Stack space="medium">
         <SiteInfo commit={commit} themeVersion={themeVersion} />
         <ForceRefresh />
-      </div>
+      </Stack>
     </Layout>
   );
 };

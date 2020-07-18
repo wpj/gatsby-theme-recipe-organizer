@@ -15,7 +15,6 @@ module.exports = ({ contentPath = 'recipes', icon = `assets/icon.png` }) => {
       title: `Recipe browser`,
     },
     plugins: [
-      `gatsby-plugin-typescript`,
       {
         resolve: `gatsby-source-filesystem`,
         options: {
@@ -60,18 +59,7 @@ module.exports = ({ contentPath = 'recipes', icon = `assets/icon.png` }) => {
         },
       },
       `gatsby-plugin-react-helmet`,
-
-      {
-        resolve: `gatsby-plugin-postcss`,
-        options: {
-          cssLoaderOptions: {
-            camelCase: false,
-          },
-          postCssPlugins: [
-            require('tailwindcss')(require.resolve('./tailwind.config')),
-          ],
-        },
-      },
+      `gatsby-plugin-treat`,
 
       {
         resolve: `gatsby-plugin-offline`,
@@ -84,11 +72,13 @@ module.exports = ({ contentPath = 'recipes', icon = `assets/icon.png` }) => {
         },
       },
 
+      // NOTE: CMS previews disabled for now since treat isn't playing well with
+      // gatsby-plugin-typescript.
       {
         resolve: `gatsby-plugin-netlify-cms`,
-        options: {
-          modulePath: `${__dirname}/src/cms/cms.ts`,
-        },
+        // options: {
+        //   modulePath: `${__dirname}/src/cms/cms.ts`,
+        // },
       },
     ],
   };
