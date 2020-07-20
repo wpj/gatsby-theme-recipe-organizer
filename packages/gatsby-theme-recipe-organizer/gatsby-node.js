@@ -135,7 +135,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         tag: tag.fieldValue,
       },
-      path: `/tag/${paramCase(tag.fieldValue)}`,
+      path: `/tag/${paramCase(tag.fieldValue)}/`,
     });
   });
 };
