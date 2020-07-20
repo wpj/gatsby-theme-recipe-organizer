@@ -6,8 +6,8 @@ import { Link } from '../link';
 import { Box, Heading, Text } from '../../ds';
 
 const navItemMargin = {
-  right: ['none', 'large'],
-  left: ['large', 'none'],
+  right: ['none', 'medium'],
+  left: ['medium', 'none'],
 } as const;
 
 const NavList: FC<{ items: { text: string; href: string }[] }> = ({
