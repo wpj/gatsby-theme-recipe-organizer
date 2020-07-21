@@ -1,8 +1,6 @@
 import { style } from 'treat';
 import { hideVisually } from 'polished';
 
-export const top100 = style({ top: '100%' });
-
 export const input = style((theme) => ({
   borderLeftWidth: theme.borderWidth.medium,
   borderLeftColor: theme.colors.lightgray,

@@ -1,12 +1,13 @@
 export interface SearchDocument {
   slug: string;
-  tags?: string[];
-  title?: string;
+  source: string | null;
+  tags: string[] | null;
+  title: string | null;
 }
 
 type FieldIndex = string | string[];
 
-export interface SearchIndex {
+export interface IndexData {
   documents: SearchDocument[];
   indexFields: FieldIndex[];
 }

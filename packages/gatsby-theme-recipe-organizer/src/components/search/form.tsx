@@ -1,114 +1,78 @@
 import cc from 'classcat';
-import React, { useState, SyntheticEvent } from 'react';
+import React, { useRef, SyntheticEvent } from 'react';
 import { useStyles } from 'react-treat';
 import { Search as SearchIcon } from 'react-feather';
+import { navigate } from 'gatsby-link';
 
+import { FormPreset } from './types';
 import { Box, Text } from '../../ds';
-import Results from './results';
-import { FormPreset, SearchDocument } from './types';
-import { Index } from './search-index';
-
 import * as formRefs from './form.treat';
 import { useReset } from '../../ds/hooks';
 
 interface Props {
-  init: () => void;
-  searchIndex: Index | null;
-  preset?: FormPreset;
+  initialQuery?: string;
+  preset: FormPreset;
 }
 
-export default function SearchForm({
-  init,
-  searchIndex,
-  preset = 'inline',
-}: Props) {
-  let [results, setResults] = useState<SearchDocument[] | null>(null);
+function search(query: string) {
+  navigate(`/search/?q=${query}`);
+}
+
+export default function SearchForm({ preset, initialQuery = '' }: Props) {
+  let inputRef = useRef<HTMLInputElement>(null);
   let formStyles = useStyles(formRefs);
   let reset = useReset('input');
 
-  function handleFocus() {
-    init();
-  }
-
-  const handleClick = handleFocus;
-
-  function handleMouseOver() {
-    init();
-  }
-
-  function handleChange(e: SyntheticEvent<HTMLInputElement>) {
-    if (!searchIndex) {
-      return;
-    }
-
-    let query = e.currentTarget.value;
-
-    let results = searchIndex.search(query) as SearchDocument[];
-
-    setResults(results);
-  }
-
   function handleSubmit(e: SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    let query = inputRef.current?.value;
+
+    if (query) {
+      search(query);
+    }
   }
 
   return (
-    <Box position="relative">
-      <form onSubmit={handleSubmit}>
+    <form autoComplete="off" onSubmit={handleSubmit}>
+      <Box
+        borderRadius="medium"
+        border={preset === 'standalone' ? 'weak' : undefined}
+        borderColor="gray"
+        display="flex"
+        backgroundColor="white"
+        overflow="hidden"
+      >
         <Box
-          borderRadius="medium"
-          border={preset === 'standalone' ? 'weak' : undefined}
-          borderColor="gray"
           display="flex"
-          backgroundColor="white"
-          overflow="hidden"
+          alignItems="center"
+          justifyContent="center"
+          px="small"
         >
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            px="small"
-          >
-            <Text color="darkgray" size="small">
-              <SearchIcon
-                className={formStyles.icon}
-                width="1em"
-                height="1em"
-              />
-            </Text>
-          </Box>
-          <label className={formStyles.hide} htmlFor="search-text">
-            Search
-          </label>
-          <input
-            id="search-text"
-            className={cc([
-              reset,
-              formStyles.input,
-              preset === 'standalone' ? formStyles.large : formStyles.small,
-            ])}
-            onChange={handleChange}
-            onClick={handleClick}
-            onFocus={handleFocus}
-            onMouseOver={handleMouseOver}
-            type="search"
-          />
+          <Text color="darkgray" size="small">
+            <SearchIcon className={formStyles.icon} width="1em" height="1em" />
+          </Text>
         </Box>
-      </form>
-      {results != null && results.length ? (
-        <Box
-          position="absolute"
-          width="full"
-          mt={preset === 'standalone' ? 'small' : 'xsmall'}
-          px="medium"
-          backgroundColor="white"
-          borderRadius="medium"
-          zIndex="low"
-          className={cc([formStyles.shadow, formStyles.top100])}
-        >
-          <Results items={results} />
-        </Box>
-      ) : null}
-    </Box>
+        <label className={formStyles.hide} htmlFor="search-text">
+          Search
+        </label>
+        <input
+          autoCapitalize="off"
+          autoCorrect="off"
+          className={cc([
+            reset,
+            formStyles.input,
+            preset === 'standalone' ? formStyles.large : formStyles.small,
+          ])}
+          defaultValue={initialQuery}
+          id="search-text"
+          inputMode="search"
+          placeholder="Search recipes"
+          ref={inputRef}
+          tabIndex={1}
+          type="search"
+        />
+      </Box>
+    </form>
   );
 }

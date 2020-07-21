@@ -1645,7 +1645,6 @@ export type SitePluginPluginOptionsFilterInput = {
   include_favicon?: Maybe<BooleanQueryOperatorInput>;
   legacy?: Maybe<BooleanQueryOperatorInput>;
   theme_color_in_head?: Maybe<BooleanQueryOperatorInput>;
-  cssLoaderOptions?: Maybe<SitePluginPluginOptionsCssLoaderOptionsFilterInput>;
   workboxConfig?: Maybe<SitePluginPluginOptionsWorkboxConfigFilterInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
@@ -1678,10 +1677,6 @@ export type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   disableBgImageOnAlpha?: Maybe<BooleanQueryOperatorInput>;
   disableBgImage?: Maybe<BooleanQueryOperatorInput>;
   ignoreFileExtensions?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePluginPluginOptionsCssLoaderOptionsFilterInput = {
-  camelCase?: Maybe<BooleanQueryOperatorInput>;
 };
 
 export type SitePluginPluginOptionsWorkboxConfigFilterInput = {
@@ -1800,7 +1795,6 @@ export type SitePluginPluginOptions = {
   include_favicon?: Maybe<Scalars['Boolean']>;
   legacy?: Maybe<Scalars['Boolean']>;
   theme_color_in_head?: Maybe<Scalars['Boolean']>;
-  cssLoaderOptions?: Maybe<SitePluginPluginOptionsCssLoaderOptions>;
   workboxConfig?: Maybe<SitePluginPluginOptionsWorkboxConfig>;
   pathCheck?: Maybe<Scalars['Boolean']>;
 };
@@ -1831,11 +1825,6 @@ export type SitePluginPluginOptionsPluginsPluginOptions = {
   disableBgImageOnAlpha?: Maybe<Scalars['Boolean']>;
   disableBgImage?: Maybe<Scalars['Boolean']>;
   ignoreFileExtensions?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-export type SitePluginPluginOptionsCssLoaderOptions = {
-  __typename?: 'SitePluginPluginOptionsCssLoaderOptions';
-  camelCase?: Maybe<Scalars['Boolean']>;
 };
 
 export type SitePluginPluginOptionsWorkboxConfig = {
@@ -2066,7 +2055,6 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___include_favicon = 'pluginCreator___pluginOptions___include_favicon',
   pluginCreator___pluginOptions___legacy = 'pluginCreator___pluginOptions___legacy',
   pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator___pluginOptions___theme_color_in_head',
-  pluginCreator___pluginOptions___cssLoaderOptions___camelCase = 'pluginCreator___pluginOptions___cssLoaderOptions___camelCase',
   pluginCreator___pluginOptions___workboxConfig___globPatterns = 'pluginCreator___pluginOptions___workboxConfig___globPatterns',
   pluginCreator___pluginOptions___workboxConfig___globIgnores = 'pluginCreator___pluginOptions___workboxConfig___globIgnores',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
@@ -2957,7 +2945,6 @@ export enum SitePluginFieldsEnum {
   pluginOptions___include_favicon = 'pluginOptions___include_favicon',
   pluginOptions___legacy = 'pluginOptions___legacy',
   pluginOptions___theme_color_in_head = 'pluginOptions___theme_color_in_head',
-  pluginOptions___cssLoaderOptions___camelCase = 'pluginOptions___cssLoaderOptions___camelCase',
   pluginOptions___workboxConfig___globPatterns = 'pluginOptions___workboxConfig___globPatterns',
   pluginOptions___workboxConfig___globIgnores = 'pluginOptions___workboxConfig___globIgnores',
   pluginOptions___pathCheck = 'pluginOptions___pathCheck',
@@ -3018,4 +3005,386 @@ export type SitePluginGroupConnection = {
   pageInfo: PageInfo;
   field: Scalars['String'];
   fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type GatsbyImageSharpFixedFragment = {
+  __typename?: 'ImageSharpFixed';
+} & Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+export type GatsbyImageSharpFixed_TracedSvgFragment = {
+  __typename?: 'ImageSharpFixed';
+} & Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+export type GatsbyImageSharpFixed_WithWebpFragment = {
+  __typename?: 'ImageSharpFixed';
+} & Pick<
+  ImageSharpFixed,
+  'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
+>;
+
+export type GatsbyImageSharpFixed_WithWebp_TracedSvgFragment = {
+  __typename?: 'ImageSharpFixed';
+} & Pick<
+  ImageSharpFixed,
+  'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
+>;
+
+export type GatsbyImageSharpFixed_NoBase64Fragment = {
+  __typename?: 'ImageSharpFixed';
+} & Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet'>;
+
+export type GatsbyImageSharpFixed_WithWebp_NoBase64Fragment = {
+  __typename?: 'ImageSharpFixed';
+} & Pick<
+  ImageSharpFixed,
+  'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
+>;
+
+export type GatsbyImageSharpFluidFragment = {
+  __typename?: 'ImageSharpFluid';
+} & Pick<
+  ImageSharpFluid,
+  'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'
+>;
+
+export type GatsbyImageSharpFluidLimitPresentationSizeFragment = {
+  __typename?: 'ImageSharpFluid';
+} & {
+  maxHeight: ImageSharpFluid['presentationHeight'];
+  maxWidth: ImageSharpFluid['presentationWidth'];
+};
+
+export type GatsbyImageSharpFluid_TracedSvgFragment = {
+  __typename?: 'ImageSharpFluid';
+} & Pick<
+  ImageSharpFluid,
+  'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'
+>;
+
+export type GatsbyImageSharpFluid_WithWebpFragment = {
+  __typename?: 'ImageSharpFluid';
+} & Pick<
+  ImageSharpFluid,
+  | 'base64'
+  | 'aspectRatio'
+  | 'src'
+  | 'srcSet'
+  | 'srcWebp'
+  | 'srcSetWebp'
+  | 'sizes'
+>;
+
+export type GatsbyImageSharpFluid_WithWebp_TracedSvgFragment = {
+  __typename?: 'ImageSharpFluid';
+} & Pick<
+  ImageSharpFluid,
+  | 'tracedSVG'
+  | 'aspectRatio'
+  | 'src'
+  | 'srcSet'
+  | 'srcWebp'
+  | 'srcSetWebp'
+  | 'sizes'
+>;
+
+export type GatsbyImageSharpFluid_NoBase64Fragment = {
+  __typename?: 'ImageSharpFluid';
+} & Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+export type GatsbyImageSharpFluid_WithWebp_NoBase64Fragment = {
+  __typename?: 'ImageSharpFluid';
+} & Pick<
+  ImageSharpFluid,
+  'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
+>;
+
+export type GatsbyImageSharpResolutionsFragment = {
+  __typename?: 'ImageSharpResolutions';
+} & Pick<
+  ImageSharpResolutions,
+  'base64' | 'width' | 'height' | 'src' | 'srcSet'
+>;
+
+export type GatsbyImageSharpResolutions_TracedSvgFragment = {
+  __typename?: 'ImageSharpResolutions';
+} & Pick<
+  ImageSharpResolutions,
+  'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'
+>;
+
+export type GatsbyImageSharpResolutions_WithWebpFragment = {
+  __typename?: 'ImageSharpResolutions';
+} & Pick<
+  ImageSharpResolutions,
+  'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
+>;
+
+export type GatsbyImageSharpResolutions_WithWebp_TracedSvgFragment = {
+  __typename?: 'ImageSharpResolutions';
+} & Pick<
+  ImageSharpResolutions,
+  'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
+>;
+
+export type GatsbyImageSharpResolutions_NoBase64Fragment = {
+  __typename?: 'ImageSharpResolutions';
+} & Pick<ImageSharpResolutions, 'width' | 'height' | 'src' | 'srcSet'>;
+
+export type GatsbyImageSharpResolutions_WithWebp_NoBase64Fragment = {
+  __typename?: 'ImageSharpResolutions';
+} & Pick<
+  ImageSharpResolutions,
+  'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
+>;
+
+export type GatsbyImageSharpSizesFragment = {
+  __typename?: 'ImageSharpSizes';
+} & Pick<
+  ImageSharpSizes,
+  'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'
+>;
+
+export type GatsbyImageSharpSizes_TracedSvgFragment = {
+  __typename?: 'ImageSharpSizes';
+} & Pick<
+  ImageSharpSizes,
+  'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'
+>;
+
+export type GatsbyImageSharpSizes_WithWebpFragment = {
+  __typename?: 'ImageSharpSizes';
+} & Pick<
+  ImageSharpSizes,
+  | 'base64'
+  | 'aspectRatio'
+  | 'src'
+  | 'srcSet'
+  | 'srcWebp'
+  | 'srcSetWebp'
+  | 'sizes'
+>;
+
+export type GatsbyImageSharpSizes_WithWebp_TracedSvgFragment = {
+  __typename?: 'ImageSharpSizes';
+} & Pick<
+  ImageSharpSizes,
+  | 'tracedSVG'
+  | 'aspectRatio'
+  | 'src'
+  | 'srcSet'
+  | 'srcWebp'
+  | 'srcSetWebp'
+  | 'sizes'
+>;
+
+export type GatsbyImageSharpSizes_NoBase64Fragment = {
+  __typename?: 'ImageSharpSizes';
+} & Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+export type GatsbyImageSharpSizes_WithWebp_NoBase64Fragment = {
+  __typename?: 'ImageSharpSizes';
+} & Pick<
+  ImageSharpSizes,
+  'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
+>;
+
+export type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
+
+export type PagesQueryQuery = { __typename?: 'Query' } & {
+  allSitePage: { __typename?: 'SitePageConnection' } & {
+    nodes: Array<{ __typename?: 'SitePage' } & Pick<SitePage, 'path'>>;
+  };
+};
+
+export type SearchIndexDataQueryVariables = Exact<{ [key: string]: never }>;
+
+export type SearchIndexDataQuery = { __typename?: 'Query' } & {
+  indexData: { __typename?: 'MarkdownRemarkConnection' } & {
+    nodes: Array<
+      { __typename?: 'MarkdownRemark' } & {
+        fields?: Maybe<
+          { __typename?: 'MarkdownRemarkFields' } & Pick<
+            MarkdownRemarkFields,
+            'slug'
+          >
+        >;
+        frontmatter?: Maybe<
+          { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
+            MarkdownRemarkFrontmatter,
+            'source' | 'tags' | 'title'
+          >
+        >;
+      }
+    >;
+  };
+};
+
+export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never }>;
+
+export type Unnamed_1_Query = { __typename?: 'Query' } & {
+  site?: Maybe<
+    { __typename?: 'Site' } & {
+      siteMetadata?: Maybe<
+        { __typename?: 'SiteSiteMetadata' } & Pick<SiteSiteMetadata, 'title'>
+      >;
+    }
+  >;
+};
+
+export type Unnamed_2_QueryVariables = Exact<{ [key: string]: never }>;
+
+export type Unnamed_2_Query = { __typename?: 'Query' } & {
+  site?: Maybe<
+    { __typename?: 'Site' } & {
+      siteMetadata?: Maybe<
+        { __typename?: 'SiteSiteMetadata' } & Pick<SiteSiteMetadata, 'title'>
+      >;
+    }
+  >;
+};
+
+export type Unnamed_3_QueryVariables = Exact<{ [key: string]: never }>;
+
+export type Unnamed_3_Query = { __typename?: 'Query' } & {
+  site?: Maybe<
+    { __typename?: 'Site' } & {
+      siteMetadata?: Maybe<
+        { __typename?: 'SiteSiteMetadata' } & Pick<SiteSiteMetadata, 'title'>
+      >;
+    }
+  >;
+  allMarkdownRemark: { __typename?: 'MarkdownRemarkConnection' } & {
+    edges: Array<
+      { __typename?: 'MarkdownRemarkEdge' } & {
+        node: { __typename?: 'MarkdownRemark' } & Pick<
+          MarkdownRemark,
+          'excerpt'
+        > & {
+            fields?: Maybe<
+              { __typename?: 'MarkdownRemarkFields' } & Pick<
+                MarkdownRemarkFields,
+                'slug'
+              >
+            >;
+            frontmatter?: Maybe<
+              { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
+                MarkdownRemarkFrontmatter,
+                'title'
+              >
+            >;
+          };
+      }
+    >;
+  };
+};
+
+export type Unnamed_4_QueryVariables = Exact<{ [key: string]: never }>;
+
+export type Unnamed_4_Query = { __typename?: 'Query' } & {
+  site?: Maybe<
+    { __typename?: 'Site' } & {
+      siteMetadata?: Maybe<
+        { __typename?: 'SiteSiteMetadata' } & Pick<SiteSiteMetadata, 'title'>
+      >;
+    }
+  >;
+};
+
+export type Unnamed_5_QueryVariables = Exact<{ [key: string]: never }>;
+
+export type Unnamed_5_Query = { __typename?: 'Query' } & {
+  site?: Maybe<
+    { __typename?: 'Site' } & {
+      siteMetadata?: Maybe<
+        { __typename?: 'SiteSiteMetadata' } & Pick<
+          SiteSiteMetadata,
+          'commit' | 'themeVersion' | 'title'
+        >
+      >;
+    }
+  >;
+};
+
+export type Unnamed_6_QueryVariables = Exact<{ [key: string]: never }>;
+
+export type Unnamed_6_Query = { __typename?: 'Query' } & {
+  site?: Maybe<
+    { __typename?: 'Site' } & {
+      siteMetadata?: Maybe<
+        { __typename?: 'SiteSiteMetadata' } & Pick<SiteSiteMetadata, 'title'>
+      >;
+    }
+  >;
+  allMarkdownRemark: { __typename?: 'MarkdownRemarkConnection' } & {
+    group: Array<
+      { __typename?: 'MarkdownRemarkGroupConnection' } & Pick<
+        MarkdownRemarkGroupConnection,
+        'fieldValue' | 'totalCount'
+      >
+    >;
+  };
+};
+
+export type RecipeBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+export type RecipeBySlugQuery = { __typename?: 'Query' } & {
+  site?: Maybe<
+    { __typename?: 'Site' } & {
+      siteMetadata?: Maybe<
+        { __typename?: 'SiteSiteMetadata' } & Pick<SiteSiteMetadata, 'title'>
+      >;
+    }
+  >;
+  markdownRemark?: Maybe<
+    { __typename?: 'MarkdownRemark' } & Pick<
+      MarkdownRemark,
+      'id' | 'excerpt' | 'html'
+    > & {
+        frontmatter?: Maybe<
+          { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
+            MarkdownRemarkFrontmatter,
+            'title'
+          >
+        >;
+      }
+  >;
+};
+
+export type Unnamed_7_QueryVariables = Exact<{
+  tag?: Maybe<Scalars['String']>;
+}>;
+
+export type Unnamed_7_Query = { __typename?: 'Query' } & {
+  site?: Maybe<
+    { __typename?: 'Site' } & {
+      siteMetadata?: Maybe<
+        { __typename?: 'SiteSiteMetadata' } & Pick<SiteSiteMetadata, 'title'>
+      >;
+    }
+  >;
+  allMarkdownRemark: { __typename?: 'MarkdownRemarkConnection' } & Pick<
+    MarkdownRemarkConnection,
+    'totalCount'
+  > & {
+      edges: Array<
+        { __typename?: 'MarkdownRemarkEdge' } & {
+          node: { __typename?: 'MarkdownRemark' } & {
+            fields?: Maybe<
+              { __typename?: 'MarkdownRemarkFields' } & Pick<
+                MarkdownRemarkFields,
+                'slug'
+              >
+            >;
+            frontmatter?: Maybe<
+              { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
+                MarkdownRemarkFrontmatter,
+                'title'
+              >
+            >;
+          };
+        }
+      >;
+    };
 };

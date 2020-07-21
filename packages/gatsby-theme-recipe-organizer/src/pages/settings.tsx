@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { graphql } from 'gatsby';
 
 import { Query } from '../graphql/types';
-import Layout from '../components/layout';
+import MainLayout from '../components/layouts/main';
 import { Box, Button, Heading, Stack, Text } from '../ds';
 
 async function clearCacheStorage() {
@@ -109,7 +109,7 @@ const SettingsPage: FC<{ data: Query }> = ({ data }) => {
   const pageTitle = `${siteTitle} | Settings`;
 
   return (
-    <Layout pageTitle={pageTitle} siteTitle={siteTitle}>
+    <MainLayout pageTitle={pageTitle} siteTitle={siteTitle}>
       <Box my={['medium', 'large']}>
         <Heading level="1">Settings</Heading>
       </Box>
@@ -117,7 +117,7 @@ const SettingsPage: FC<{ data: Query }> = ({ data }) => {
         <SiteInfo commit={commit} themeVersion={themeVersion} />
         <ForceRefresh />
       </Stack>
-    </Layout>
+    </MainLayout>
   );
 };
 

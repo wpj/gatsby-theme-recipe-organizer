@@ -1,5 +1,5 @@
 import { style } from 'treat';
 
-export const root = style({
+export const container = style({
   maxWidth: 768,
 });

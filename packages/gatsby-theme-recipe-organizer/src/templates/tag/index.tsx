@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, PageProps } from 'gatsby';
 
-import Layout from '../../components/layout';
+import Layout from '../../components/layouts/main';
 import { Query } from '../../graphql/types';
 import LinkList from '../../components/link-list';
 import { Box, Heading } from '../../ds';

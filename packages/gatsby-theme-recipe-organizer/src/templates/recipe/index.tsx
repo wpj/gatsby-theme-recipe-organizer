@@ -4,7 +4,7 @@ import { graphql, PageProps } from 'gatsby';
 import { useStyles } from 'react-treat';
 
 import * as styleRefs from './recipe.treat';
-import Layout from '../../components/layout';
+import Layout from '../../components/layouts/main';
 import { Query } from '../../graphql/types';
 
 interface RecipeProps {

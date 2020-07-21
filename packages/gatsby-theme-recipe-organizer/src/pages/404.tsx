@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, PageProps } from 'gatsby';
 
 import { Query } from '../graphql/types';
-import Layout from '../components/layout';
+import Layout from '../components/layouts/main';
 
 interface Props extends PageProps {
   data: {

@@ -1,6 +1,6 @@
 import { Search as JsSearch } from 'js-search';
 
-import { SearchIndex, SearchDocument } from './types';
+import { IndexData, SearchDocument } from './types';
 
 // Represents a field on a SearchDocument to filter by.
 interface Filter {
@@ -35,16 +35,16 @@ export class Index {
   #index: JsSearch;
   #documents: SearchDocument[];
 
-  constructor(indexConfig: SearchIndex) {
+  constructor(indexData: IndexData) {
     this.#index = new JsSearch('slug');
-    this.#documents = indexConfig.documents;
+    this.#documents = indexData.documents;
 
-    indexConfig.indexFields.forEach((index) => this.#index.addIndex(index));
+    indexData.indexFields.forEach((index) => this.#index.addIndex(index));
 
-    this.#index.addDocuments(indexConfig.documents);
+    this.#index.addDocuments(indexData.documents);
   }
 
-  private searchWithQuery(rawQuery: string) {
+  private async searchWithQuery(rawQuery: string) {
     let [query, filters] = processFilterQuery(rawQuery);
 
     let unfilteredResults = query
@@ -73,11 +73,13 @@ export class Index {
     return filteredResults.length > 0 ? filteredResults : null;
   }
 
-  search(query: string) {
+  async search(query: string) {
     if (isQueryWithFilters(query)) {
       return this.searchWithQuery(query);
     }
 
-    return this.#index.search(query) as SearchDocument[] | null;
+    let results = this.#index.search(query);
+
+    return results.length > 0 ? (results as SearchDocument[]) : null;
   }
 }
