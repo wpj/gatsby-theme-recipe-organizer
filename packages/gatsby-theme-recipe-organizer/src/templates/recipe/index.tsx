@@ -4,7 +4,7 @@ import { graphql, PageProps } from 'gatsby';
 import { useStyles } from 'react-treat';
 
 import * as styleRefs from './recipe.treat';
-import Layout from '../../components/layout';
+import MainLayout from '../../components/layouts/main';
 import { Query } from '../../graphql/types';
 
 interface RecipeProps {
@@ -47,9 +47,9 @@ const RecipeTemplate = ({ data }: RecipeTemplateProps) => {
   const pageTitle = `${siteTitle} | Recipe - ${title}`;
 
   return (
-    <Layout pageTitle={pageTitle} siteTitle={siteTitle}>
+    <MainLayout pageTitle={pageTitle} siteTitle={siteTitle}>
       <Recipe title={title} content={recipe.html!} />
-    </Layout>
+    </MainLayout>
   );
 };
 

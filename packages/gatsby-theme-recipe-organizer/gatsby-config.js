@@ -65,9 +65,10 @@ module.exports = ({ contentPath = 'recipes', icon = `assets/icon.png` }) => {
         resolve: `gatsby-plugin-offline`,
         options: {
           workboxConfig: {
-            runtimeCaching: [],
             globPatterns: ['**/*'],
             globIgnores: ['admin/**/*'],
+            ignoreURLParametersMatching: [/^q$/],
+            runtimeCaching: [],
           },
         },
       },

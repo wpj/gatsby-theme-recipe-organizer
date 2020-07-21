@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import { paramCase } from 'change-case';
 
 import { Query } from '../graphql/types';
-import Layout from '../components/layout';
+import MainLayout from '../components/layouts/main';
 import LinkList from '../components/link-list';
 import { Box, Heading } from '../ds';
 
@@ -22,12 +22,12 @@ const TagsPage: FC<{ data: Query }> = ({ data }) => {
   const pageTitle = `${siteTitle} | Tags`;
 
   return (
-    <Layout pageTitle={pageTitle} siteTitle={siteTitle}>
+    <MainLayout pageTitle={pageTitle} siteTitle={siteTitle}>
       <Box py={['medium', 'large']}>
         <Heading level="1">Tags</Heading>
       </Box>
       <LinkList items={links} />
-    </Layout>
+    </MainLayout>
   );
 };
 

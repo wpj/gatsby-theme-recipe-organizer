@@ -62,3 +62,13 @@ export const listStyleType = styleMap(
     'listStyleType',
   ),
 );
+
+export const fontStyle = styleMap(
+  mapToStyleProperty(
+    {
+      italic: 'italic',
+      normal: 'normal',
+    },
+    'fontStyle',
+  ),
+);

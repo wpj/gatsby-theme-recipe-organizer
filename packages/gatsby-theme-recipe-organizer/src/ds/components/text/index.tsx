@@ -18,6 +18,7 @@ export interface Props {
   color?: keyof ColorStyles['color'];
   as?: ElementType;
   fontFamily?: keyof Theme['fontFamily'];
+  fontStyle?: keyof TypographyStyles['fontStyle'];
   size?: ResponsiveProp<FontSize>;
   weight?: keyof TypographyStyles['fontWeight'];
   whitespace?: keyof TypographyStyles['whitespace'];
@@ -28,9 +29,11 @@ export const Text: FC<Props> = ({
   color,
   as: Component = 'span',
   fontFamily = 'body',
+  fontStyle,
   size,
   weight,
   whitespace,
+  ...props
 }) => {
   let colorStyles = useColorStyles();
   let typographyStyles = useTypographyStyles();
@@ -40,10 +43,15 @@ export const Text: FC<Props> = ({
     reset,
     color && colorStyles.color[color],
     fontFamily && typographyStyles.fontFamily[fontFamily],
+    fontStyle && typographyStyles.fontStyle[fontStyle],
     size && resolve(size, typographyStyles.fontSize),
     weight && typographyStyles.fontWeight[weight],
     whitespace && typographyStyles.whitespace[whitespace],
   ]);
 
-  return <Component className={cls}>{children}</Component>;
+  return (
+    <Component {...props} className={cls}>
+      {children}
+    </Component>
+  );
 };
