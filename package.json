@@ -5,13 +5,14 @@
     "packages/gatsby-theme-recipe-organizer"
   ],
   "scripts": {
-    "graphql-type-gen": "graphql-codegen --config config/codegen.yml",
+    "graphql-type-gen": "graphql-codegen --config graphql-codegen.yml",
     "test": "jest",
     "typecheck": "tsc"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.16.3",
     "@graphql-codegen/typescript": "^1.16.3",
+    "@graphql-codegen/typescript-operations": "^1.17.3",
     "@types/jest": "^26.0.4",
     "@types/js-search": "^1.4.0",
     "@types/node": "^14.0.22",
