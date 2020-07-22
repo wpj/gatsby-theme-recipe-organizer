@@ -4,7 +4,7 @@ import { graphql, PageProps } from 'gatsby';
 import MainLayout from '../components/layouts/main';
 import { Query } from '../graphql/types';
 import { Box } from '../ds';
-import Search from '../components/search';
+import SearchForm from '../components/search/form';
 import * as indexPageRefs from '../styles/pages/index.treat';
 
 interface Props extends PageProps {
@@ -17,7 +17,7 @@ const IndexPage = ({ data }: Props) => {
   return (
     <MainLayout showSearch={false} siteTitle={siteTitle} pageTitle={siteTitle}>
       <Box className={indexPageRefs.marginTop}>
-        <Search preset="standalone" />
+        <SearchForm preset="standalone" />
       </Box>
     </MainLayout>
   );

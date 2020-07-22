@@ -33,6 +33,7 @@ export const Text: FC<Props> = ({
   size,
   weight,
   whitespace,
+  ...props
 }) => {
   let colorStyles = useColorStyles();
   let typographyStyles = useTypographyStyles();
@@ -48,5 +49,9 @@ export const Text: FC<Props> = ({
     whitespace && typographyStyles.whitespace[whitespace],
   ]);
 
-  return <Component className={cls}>{children}</Component>;
+  return (
+    <Component {...props} className={cls}>
+      {children}
+    </Component>
+  );
 };

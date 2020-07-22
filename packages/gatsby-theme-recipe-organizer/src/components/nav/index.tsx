@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import Search from '../search';
+import SearchForm from '../search/form';
 import { Link } from '../link';
 
 import { Box, Heading, Text } from '../../ds';
@@ -79,7 +79,7 @@ const Nav: FC<{ siteTitle: string; showSearch: boolean }> = ({
       </Box>
       {showSearch ? (
         <Box flexGrow="grow">
-          <Search />
+          <SearchForm preset="inline" />
         </Box>
       ) : null}
     </Box>

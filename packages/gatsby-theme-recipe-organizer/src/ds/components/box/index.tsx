@@ -121,6 +121,8 @@ export const Box: FC<Props> = ({
   width,
   style,
   zIndex,
+
+  ...props
 }) => {
   let spaceStyles = useSpaceStyles();
   let colorStyles = useColorStyles();
@@ -185,7 +187,7 @@ export const Box: FC<Props> = ({
   ]);
 
   return (
-    <Component style={style} className={cls}>
+    <Component {...props} style={style} className={cls}>
       {children}
     </Component>
   );
