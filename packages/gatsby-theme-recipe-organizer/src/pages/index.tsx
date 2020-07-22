@@ -17,7 +17,7 @@ const IndexPage = ({ data }: Props) => {
   return (
     <MainLayout showSearch={false} siteTitle={siteTitle} pageTitle={siteTitle}>
       <Box className={indexPageRefs.marginTop}>
-        <SearchForm preset="standalone" />
+        <SearchForm autoFocus={true} preset="standalone" />
       </Box>
     </MainLayout>
   );

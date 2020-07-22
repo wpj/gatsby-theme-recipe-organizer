@@ -10,6 +10,7 @@ import * as formRefs from './form.treat';
 import { useReset } from '../../ds/hooks';
 
 interface Props {
+  autoFocus?: boolean;
   initialQuery?: string;
   preset: FormPreset;
 }
@@ -18,7 +19,11 @@ function search(query: string) {
   navigate(`/search/?q=${query}`);
 }
 
-export default function SearchForm({ preset, initialQuery = '' }: Props) {
+export default function SearchForm({
+  autoFocus = false,
+  preset,
+  initialQuery = '',
+}: Props) {
   let inputRef = useRef<HTMLInputElement>(null);
   let formStyles = useStyles(formRefs);
   let reset = useReset('input');
@@ -59,6 +64,7 @@ export default function SearchForm({ preset, initialQuery = '' }: Props) {
         <input
           autoCapitalize="off"
           autoCorrect="off"
+          autoFocus={autoFocus}
           className={cc([
             reset,
             formStyles.input,
@@ -69,7 +75,6 @@ export default function SearchForm({ preset, initialQuery = '' }: Props) {
           inputMode="search"
           placeholder="Search recipes"
           ref={inputRef}
-          tabIndex={1}
           type="search"
         />
       </Box>

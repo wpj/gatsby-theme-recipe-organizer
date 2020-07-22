@@ -24,7 +24,7 @@ const MainLayout: FC<Props> = ({
 }) => {
   return (
     <Provider>
-      <Helmet>
+      <Helmet htmlAttributes={{ lang: 'en' }}>
         <title>{pageTitle}</title>
       </Helmet>
       <Box as="header">
