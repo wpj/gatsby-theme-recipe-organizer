@@ -12,7 +12,7 @@ module.exports = ({ contentPath = 'recipes', icon = `assets/icon.png` }) => {
       commit: commitSha,
       description: `An offline application for browsing recipes`,
       themeVersion: pkg.version,
-      title: `Recipe browser`,
+      title: `Recipe Organizer`,
     },
     plugins: [
       {
@@ -48,8 +48,8 @@ module.exports = ({ contentPath = 'recipes', icon = `assets/icon.png` }) => {
       {
         resolve: `gatsby-plugin-manifest`,
         options: {
-          name: `Note Browser`,
-          short_name: `NoteBrowser`,
+          name: `Recipe Organizer`,
+          short_name: `RecipeOrganizer`,
           start_url: `/`,
           background_color: `#ffffff`,
           theme_color: `#663399`,
