@@ -16,7 +16,13 @@ interface Props {
 }
 
 function search(query: string) {
-  navigate(`/search/?q=${query}`);
+  // Back up the query to session storage in case gatsby force refreshes the
+  // page after a site update.
+  try {
+    sessionStorage.setItem('queryBackup', query);
+  } catch (e) {}
+
+  navigate(`/search/?q=${query}`, { state: { query } });
 }
 
 export default function SearchForm({
