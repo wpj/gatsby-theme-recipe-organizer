@@ -19,8 +19,10 @@ const SearchPage: FC<PageProps<Query, null, LocationState>> = ({
   let params = parseQueryString(location.search);
   let query = params.q as string;
 
+  let pageTitle = `${siteTitle} | Search Results`;
+
   return (
-    <MainLayout showSearch={false} siteTitle={siteTitle} pageTitle={siteTitle}>
+    <MainLayout showSearch={false} siteTitle={siteTitle} pageTitle={pageTitle}>
       <Box mt="large">
         <SearchForm initialQuery={query} preset="standalone" />
       </Box>
