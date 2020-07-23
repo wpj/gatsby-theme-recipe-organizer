@@ -1,29 +1,46 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import { SearchIndexDataQuery } from '../../graphql/types';
 import { Index } from './search-index';
-import { SearchDocument } from './types';
 
 const INDEX_FIELDS = ['source', 'tags', 'title'];
 
-type QueryState =
-  | {
-      status: 'inactive';
-    }
+type QueryState<Data> =
   | {
       status: 'loading';
     }
   | {
       status: 'ok';
-      data: SearchDocument[] | null;
+      data: Data;
+    }
+  | {
+      status: 'error';
+      error: Error;
     };
 
-export function useSearch(query: string) {
-  let [queryState, setQueryState] = useState<QueryState>({
-    status: 'inactive',
+function useQuery<Data>(fetcher: () => Promise<Data>) {
+  let [queryState, setQueryState] = useState<QueryState<Data>>({
+    status: 'loading',
   });
 
+  useEffect(() => {
+    async function run() {
+      try {
+        let data = await fetcher();
+        setQueryState({ status: 'ok', data });
+      } catch (e) {
+        setQueryState({ status: 'error', error: e });
+      }
+    }
+
+    run();
+  }, [fetcher]);
+
+  return queryState;
+}
+
+export function useSearch(query: string) {
   let queryResult = useStaticQuery<SearchIndexDataQuery>(graphql`
     query SearchIndexData {
       indexData: allMarkdownRemark(
@@ -54,23 +71,9 @@ export function useSearch(query: string) {
     return new Index({ documents, indexFields: INDEX_FIELDS });
   }, [queryResult]);
 
-  useEffect(() => {
-    async function run() {
-      if (!query) {
-        return;
-      }
-
-      setQueryState({ status: 'loading' });
-
-      if (query) {
-        let results = (await searchIndex.search(query)) as SearchDocument[];
-
-        setQueryState({ status: 'ok', data: results });
-      }
-    }
-
-    run();
+  let fetchSearchResults = useCallback(() => {
+    return query ? searchIndex.search(query) : Promise.resolve(null);
   }, [searchIndex, query]);
 
-  return queryState;
+  return useQuery(fetchSearchResults);
 }

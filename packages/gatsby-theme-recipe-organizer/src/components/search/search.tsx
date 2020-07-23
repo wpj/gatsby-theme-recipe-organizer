@@ -10,7 +10,7 @@ interface Props {
 export default function Search({ query }: Props) {
   let result = useSearch(query);
 
-  if (result.status === 'inactive' || result.status === 'loading') {
+  if (result.status !== 'ok') {
     return null;
   }
 

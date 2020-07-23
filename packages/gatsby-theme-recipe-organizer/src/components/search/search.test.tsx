@@ -27,8 +27,11 @@ function renderWithProvider(
 }
 
 describe('Search', () => {
-  test('displays nothing when no query is passed', () => {
-    mockedUseSearch.mockImplementation(() => ({ status: 'inactive' }));
+  test('displays nothing when a query error occurs', () => {
+    mockedUseSearch.mockImplementation(() => ({
+      status: 'error',
+      error: new Error('Something went wront'),
+    }));
 
     const { queryByTestId } = renderWithProvider(<Search query={''} />);
 
