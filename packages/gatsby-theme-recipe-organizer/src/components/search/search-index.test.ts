@@ -26,7 +26,7 @@ const SEARCH_INDEX = new Index({
   indexFields: ['source', 'title', 'tags'],
 });
 
-describe('Search', () => {
+describe('SearchIndex', () => {
   describe('without filters', () => {
     test('finds documents matching query', async () => {
       let results = (await SEARCH_INDEX.search('first'))!;

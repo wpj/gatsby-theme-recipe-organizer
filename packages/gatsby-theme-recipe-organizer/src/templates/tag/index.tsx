@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, PageProps } from 'gatsby';
 
-import Layout from '../../components/layouts/main';
+import MainLayout from '../../components/layouts/main';
 import { Query } from '../../graphql/types';
 import LinkList from '../../components/link-list';
 import { Box, Heading } from '../../ds';
@@ -24,14 +24,14 @@ const TagTemplate = ({ data, pageContext }: Props) => {
   const pageTitle = `${siteTitle} | Tag - ${tag}`;
 
   return (
-    <Layout pageTitle={pageTitle} siteTitle={siteTitle}>
+    <MainLayout pageTitle={pageTitle} siteTitle={siteTitle}>
       <Box px={['medium', 'large']} my={['medium', 'large']}>
         <Heading align="center" level="1">
           Tag: {tag}
         </Heading>
       </Box>
       <LinkList items={items} />
-    </Layout>
+    </MainLayout>
   );
 };
 

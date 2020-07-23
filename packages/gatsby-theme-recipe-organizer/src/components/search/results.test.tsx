@@ -20,7 +20,7 @@ function renderWithProvider(
   );
 }
 
-const documents: SearchDocument[] = [
+const searchDocuments: SearchDocument[] = [
   {
     title: 'a',
     slug: '/a',
@@ -50,7 +50,7 @@ describe('Results', () => {
 
   test('displays pluralized results when a single item is passed', () => {
     const { queryAllByTestId, queryByTestId } = renderWithProvider(
-      <Results items={[documents[0]]} />,
+      <Results items={[searchDocuments[0]]} />,
     );
 
     expect(queryByTestId('search-results-summary')).toHaveTextContent(
@@ -62,7 +62,7 @@ describe('Results', () => {
 
   test('displays pluralized results when multiple items are passed', () => {
     const { queryAllByTestId, queryByTestId } = renderWithProvider(
-      <Results items={documents} />,
+      <Results items={searchDocuments} />,
     );
 
     expect(queryByTestId('search-results-summary')).toHaveTextContent(

@@ -7,7 +7,7 @@ import { SearchDocument } from './types';
 
 const INDEX_FIELDS = ['source', 'tags', 'title'];
 
-type SearchState =
+type QueryState =
   | {
       status: 'inactive';
     }
@@ -20,7 +20,9 @@ type SearchState =
     };
 
 export function useSearch(query: string) {
-  let [state, setState] = useState<SearchState>({ status: 'inactive' });
+  let [queryState, setQueryState] = useState<QueryState>({
+    status: 'inactive',
+  });
 
   let queryResult = useStaticQuery<SearchIndexDataQuery>(graphql`
     query SearchIndexData {
@@ -58,17 +60,17 @@ export function useSearch(query: string) {
         return;
       }
 
-      setState({ status: 'loading' });
+      setQueryState({ status: 'loading' });
 
       if (query) {
         let results = (await searchIndex.search(query)) as SearchDocument[];
 
-        setState({ status: 'ok', data: results });
+        setQueryState({ status: 'ok', data: results });
       }
     }
 
     run();
   }, [searchIndex, query]);
 
-  return state;
+  return queryState;
 }
