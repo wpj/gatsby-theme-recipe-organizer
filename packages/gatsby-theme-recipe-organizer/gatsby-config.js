@@ -67,7 +67,7 @@ module.exports = ({ contentPath = 'recipes', icon = `assets/icon.png` }) => {
           workboxConfig: {
             globPatterns: ['**/*'],
             globIgnores: ['admin/**/*'],
-            ignoreURLParametersMatching: [/^q$/],
+            ignoreURLParametersMatching: [/.*/],
             runtimeCaching: [],
           },
         },
