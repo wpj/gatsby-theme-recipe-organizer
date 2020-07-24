@@ -1645,8 +1645,8 @@ export type SitePluginPluginOptionsFilterInput = {
   include_favicon?: Maybe<BooleanQueryOperatorInput>;
   legacy?: Maybe<BooleanQueryOperatorInput>;
   theme_color_in_head?: Maybe<BooleanQueryOperatorInput>;
-  workboxConfig?: Maybe<SitePluginPluginOptionsWorkboxConfigFilterInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
+  workboxConfig?: Maybe<SitePluginPluginOptionsWorkboxConfigFilterInput>;
 };
 
 export type SitePluginPluginOptionsPluginsFilterListInput = {
@@ -1795,8 +1795,8 @@ export type SitePluginPluginOptions = {
   include_favicon?: Maybe<Scalars['Boolean']>;
   legacy?: Maybe<Scalars['Boolean']>;
   theme_color_in_head?: Maybe<Scalars['Boolean']>;
-  workboxConfig?: Maybe<SitePluginPluginOptionsWorkboxConfig>;
   pathCheck?: Maybe<Scalars['Boolean']>;
+  workboxConfig?: Maybe<SitePluginPluginOptionsWorkboxConfig>;
 };
 
 export type SitePluginPluginOptionsPlugins = {
@@ -2055,9 +2055,9 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___include_favicon = 'pluginCreator___pluginOptions___include_favicon',
   pluginCreator___pluginOptions___legacy = 'pluginCreator___pluginOptions___legacy',
   pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator___pluginOptions___theme_color_in_head',
+  pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
   pluginCreator___pluginOptions___workboxConfig___globPatterns = 'pluginCreator___pluginOptions___workboxConfig___globPatterns',
   pluginCreator___pluginOptions___workboxConfig___globIgnores = 'pluginCreator___pluginOptions___workboxConfig___globIgnores',
-  pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator___nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator___browserAPIs',
   pluginCreator___ssrAPIs = 'pluginCreator___ssrAPIs',
@@ -2945,9 +2945,9 @@ export enum SitePluginFieldsEnum {
   pluginOptions___include_favicon = 'pluginOptions___include_favicon',
   pluginOptions___legacy = 'pluginOptions___legacy',
   pluginOptions___theme_color_in_head = 'pluginOptions___theme_color_in_head',
+  pluginOptions___pathCheck = 'pluginOptions___pathCheck',
   pluginOptions___workboxConfig___globPatterns = 'pluginOptions___workboxConfig___globPatterns',
   pluginOptions___workboxConfig___globIgnores = 'pluginOptions___workboxConfig___globIgnores',
-  pluginOptions___pathCheck = 'pluginOptions___pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
   ssrAPIs = 'ssrAPIs',
@@ -3196,29 +3196,6 @@ export type PagesQueryQuery = { __typename?: 'Query' } & {
   };
 };
 
-export type SearchIndexDataQueryVariables = Exact<{ [key: string]: never }>;
-
-export type SearchIndexDataQuery = { __typename?: 'Query' } & {
-  indexData: { __typename?: 'MarkdownRemarkConnection' } & {
-    nodes: Array<
-      { __typename?: 'MarkdownRemark' } & {
-        fields?: Maybe<
-          { __typename?: 'MarkdownRemarkFields' } & Pick<
-            MarkdownRemarkFields,
-            'slug'
-          >
-        >;
-        frontmatter?: Maybe<
-          { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
-            MarkdownRemarkFrontmatter,
-            'source' | 'tags' | 'title'
-          >
-        >;
-      }
-    >;
-  };
-};
-
 export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never }>;
 
 export type Unnamed_1_Query = { __typename?: 'Query' } & {
@@ -3278,9 +3255,9 @@ export type Unnamed_3_Query = { __typename?: 'Query' } & {
   };
 };
 
-export type Unnamed_4_QueryVariables = Exact<{ [key: string]: never }>;
+export type SearchPageDataQueryVariables = Exact<{ [key: string]: never }>;
 
-export type Unnamed_4_Query = { __typename?: 'Query' } & {
+export type SearchPageDataQuery = { __typename?: 'Query' } & {
   site?: Maybe<
     { __typename?: 'Site' } & {
       siteMetadata?: Maybe<
@@ -3288,11 +3265,29 @@ export type Unnamed_4_Query = { __typename?: 'Query' } & {
       >;
     }
   >;
+  searchIndexData: { __typename?: 'MarkdownRemarkConnection' } & {
+    nodes: Array<
+      { __typename?: 'MarkdownRemark' } & {
+        fields?: Maybe<
+          { __typename?: 'MarkdownRemarkFields' } & Pick<
+            MarkdownRemarkFields,
+            'slug'
+          >
+        >;
+        frontmatter?: Maybe<
+          { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
+            MarkdownRemarkFrontmatter,
+            'source' | 'tags' | 'title'
+          >
+        >;
+      }
+    >;
+  };
 };
 
-export type Unnamed_5_QueryVariables = Exact<{ [key: string]: never }>;
+export type Unnamed_4_QueryVariables = Exact<{ [key: string]: never }>;
 
-export type Unnamed_5_Query = { __typename?: 'Query' } & {
+export type Unnamed_4_Query = { __typename?: 'Query' } & {
   site?: Maybe<
     { __typename?: 'Site' } & {
       siteMetadata?: Maybe<
@@ -3305,9 +3300,9 @@ export type Unnamed_5_Query = { __typename?: 'Query' } & {
   >;
 };
 
-export type Unnamed_6_QueryVariables = Exact<{ [key: string]: never }>;
+export type Unnamed_5_QueryVariables = Exact<{ [key: string]: never }>;
 
-export type Unnamed_6_Query = { __typename?: 'Query' } & {
+export type Unnamed_5_Query = { __typename?: 'Query' } & {
   site?: Maybe<
     { __typename?: 'Site' } & {
       siteMetadata?: Maybe<
@@ -3352,11 +3347,11 @@ export type RecipeBySlugQuery = { __typename?: 'Query' } & {
   >;
 };
 
-export type Unnamed_7_QueryVariables = Exact<{
+export type Unnamed_6_QueryVariables = Exact<{
   tag?: Maybe<Scalars['String']>;
 }>;
 
-export type Unnamed_7_Query = { __typename?: 'Query' } & {
+export type Unnamed_6_Query = { __typename?: 'Query' } & {
   site?: Maybe<
     { __typename?: 'Site' } & {
       siteMetadata?: Maybe<

@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import { useSearch } from './use-search';
+import { Index } from './search-index';
 
 jest.mock('./use-search', () => ({
   useSearch: jest.fn(),
@@ -26,6 +27,11 @@ function renderWithProvider(
   );
 }
 
+const searchIndex = new Index({
+  documents: [],
+  indexFields: [],
+});
+
 describe('Search', () => {
   test('displays nothing when a query error occurs', () => {
     mockedUseSearch.mockImplementation(() => ({
@@ -33,7 +39,9 @@ describe('Search', () => {
       error: new Error('Something went wront'),
     }));
 
-    const { queryByTestId } = renderWithProvider(<Search query={''} />);
+    const { queryByTestId } = renderWithProvider(
+      <Search query={''} searchIndex={searchIndex} />,
+    );
 
     expect(queryByTestId('search-results')).toBeNull();
   });
@@ -41,7 +49,9 @@ describe('Search', () => {
   test('displays nothing when query is loading', () => {
     mockedUseSearch.mockImplementation(() => ({ status: 'loading' }));
 
-    const { queryByTestId } = renderWithProvider(<Search query={''} />);
+    const { queryByTestId } = renderWithProvider(
+      <Search query={''} searchIndex={searchIndex} />,
+    );
 
     expect(queryByTestId('search-results')).toBeNull();
   });
