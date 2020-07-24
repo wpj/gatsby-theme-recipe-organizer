@@ -72,7 +72,7 @@ const Nav: FC<{ siteTitle: string; showSearch: boolean }> = ({
         </Box>
         <NavList
           items={[
-            { href: '/tags', text: 'Tags' },
+            { href: '/tags/', text: 'Tags' },
             { href: '/recipes/', text: 'All recipes' },
           ]}
         />
