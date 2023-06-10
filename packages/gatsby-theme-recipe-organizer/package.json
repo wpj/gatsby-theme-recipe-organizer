@@ -58,12 +58,12 @@
     "typography": "^0.16.19"
   },
   "devDependencies": {
-    "gatsby": "^2.24.2",
+    "gatsby": "^4.25.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "peerDependencies": {
-    "gatsby": "^2.24.2",
+    "gatsby": "^4.25.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
